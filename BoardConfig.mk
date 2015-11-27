@@ -29,9 +29,6 @@ TARGET_PRELINK_MODULE := false
 TARGET_NO_KERNEL ?= false
 TARGET_NO_RECOVERY ?= true
 TARGET_EXTRA_KERNEL_MODULES := tp_smapi
-ifneq ($(filter efi_img,$(MAKECMDGOALS)),)
-TARGET_KERNEL_ARCH ?= x86_64
-endif
 
 BOARD_USES_GENERIC_AUDIO ?= false
 BOARD_USES_ALSA_AUDIO ?= true
@@ -43,7 +40,7 @@ BUILD_EMULATOR ?= false
 BUILD_STANDALONE_EMULATOR ?= false
 BUILD_EMULATOR_QEMUD ?= false
 BUILD_EMULATOR_OPENGL ?= false
-BUILD_EMULATOR_OPENGL_DRIVER ?= false
+BUILD_EMULATOR_OPENGL_DRIVER ?= true
 BUILD_EMULATOR_QEMU_PROPS ?= false
 BUILD_EMULATOR_CAMERA_HAL ?= false
 BUILD_EMULATOR_GPS_MODULE ?= false
@@ -61,20 +58,14 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS ?= 3
 
 USE_CAMERA_STUB ?= false
 
-SUPERUSER_EMBEDDED := true
-SUPERUSER_PACKAGE_PREFIX := com.android.settings.cyanogenmod.superuser
-
 # This enables the wpa wireless driver
 BOARD_WPA_SUPPLICANT_DRIVER ?= NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB ?= private_lib_driver_cmd
 WPA_SUPPLICANT_VERSION ?= VER_2_1_DEVEL
 WIFI_DRIVER_MODULE_PATH ?= auto
 
-#BOARD_GPU_DRIVERS ?= i915 i965 ilo r300g r600g nouveau vmwgfx
-BOARD_GPU_DRIVERS ?= i915 i965 swrast r300g r600g
-ifneq ($(strip $(BOARD_GPU_DRIVERS)),)
-TARGET_HARDWARE_3D := true
-BOARD_EGL_CFG ?= device/generic/common/gpu/egl_mesa.cfg
-endif
+#OpenGL
+BUILD_EMULATOR_OPENGL := true
+BOARD_EGL_CFG := device/generic/common/opengl/system/egl/egl.cfg 
 
-BOARD_KERNEL_CMDLINE := root=/dev/ram0 androidboot.hardware=$(TARGET_PRODUCT)
+BOARD_KERNEL_CMDLINE := root=/dev/ram0 androidboot.hardware=$(TARGET_PRODUCT) video=-16

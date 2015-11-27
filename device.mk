@@ -74,8 +74,11 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_CHARACTERISTICS := tablet
 
-PRODUCT_AAPT_CONFIG := normal large xlarge mdpi hdpi
-PRODUCT_AAPT_PREF_CONFIG := mdpi
+PRODUCT_PACKAGES += \
+    vinput
+
+PRODUCT_AAPT_CONFIG := normal large xlarge mdpi hdpi xhdpi
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
 
@@ -92,7 +95,7 @@ $(call inherit-product-if-exists,hardware/libaudio/alsa.mk)
 $(call inherit-product-if-exists,device/common/gps/gps_as.mk)
 
 # Get the hardware acceleration libraries
-$(call inherit-product-if-exists,$(LOCAL_PATH)/gpu/gpu_mesa.mk)
+# $(call inherit-product-if-exists,$(LOCAL_PATH)/gpu/gpu_mesa.mk)
 
 # Get the sensors hals
 $(call inherit-product-if-exists,hardware/libsensors/sensors.mk)

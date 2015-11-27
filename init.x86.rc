@@ -45,6 +45,9 @@ on init
 
     exec /system/bin/logwrapper /system/bin/sh /system/etc/init.sh
 
+service vinput /system/bin/vinput
+    class core
+
 on fs
     mount_all /fstab.${ro.hardware}
     setprop ro.crypto.fuse_sdcard true

@@ -74,7 +74,18 @@ PRODUCT_PACKAGES += \
 
 # Third party apps
 PRODUCT_PACKAGES += \
-    CMFileManager \
-    Superuser \
     TSCalibration2 \
     Trebuchet \
+
+# Superuser
+
+# streamagame packages
+PRODUCT_PACKAGES += \
+    libGLESv1_CM_genymotion \
+    libGM_renderControl_enc \
+    libEGL_genymotion \
+    libGM_GLESv2_enc \
+    libGM_OpenglSystemCommon \
+    libGLESv2_genymotion \
+    libGM_GLESv1_enc \
+    gralloc.android_x86 \

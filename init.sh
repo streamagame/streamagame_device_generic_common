@@ -4,6 +4,12 @@
 # License: GNU Public License v2 or later
 #
 
+/system/bin/netcfg eth0 up
+/system/bin/netcfg eth0 dhcp
+
+/system/bin/netcfg eth1 up
+/system/bin/netcfg eth1 dhcp
+
 function set_property()
 {
 	# this must be run before post-fs stage
@@ -281,7 +287,9 @@ function do_init()
 	init_hal_bluetooth
 	init_hal_camera
 	init_hal_gps
-	init_hal_gralloc
+	#init_hal_gralloc
+	set_property debug.egl.hw 1
+	set_property ro.kernel.qemu.gles 1
 	init_hal_hwcomposer
 	init_hal_lights
 	init_hal_power

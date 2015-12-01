@@ -205,7 +205,7 @@ int main(int argc, char **argv)
         }
         close(ssocket);*/
         do {
-			csocket = open_socket("130.149.222.78", 22469);
+			csocket = open_socket("192.168.56.1", 22469);
 
 			if (csocket == INVALID_SOCKET) {
 				ALOGI(".");

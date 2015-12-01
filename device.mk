@@ -20,7 +20,8 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.ril.hsxpa=1 \
     ro.ril.gprsclass=10 \
     keyguard.no_require_sim=true \
-    ro.com.android.dataroaming=true
+    ro.com.android.dataroaming=true \
+    ro.sf.lcd_density=320
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
     ro.arch=x86 \

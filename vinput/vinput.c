@@ -21,6 +21,8 @@
 #include <linux/input.h>
 #include <linux/uinput.h>
 
+#include "../streamagame.h"
+
 #define LOG_TAG "vinput"
 
 #define INVALID_SOCKET -1
@@ -205,12 +207,12 @@ int main(int argc, char **argv)
         }
         close(ssocket);*/
         do {
-			csocket = open_socket("192.168.56.1", 22469);
+		csocket = open_socket(STREAMAGAME_RENDERER_ADDR, 22469);
 
-			if (csocket == INVALID_SOCKET) {
-				ALOGI(".");
-				sleep(1);
-			}
+		if (csocket == INVALID_SOCKET) {
+			ALOGI(".");
+			sleep(1);
+		}
         } while (csocket == INVALID_SOCKET);
 
         f_sock = fdopen(csocket, "r");

@@ -15,6 +15,7 @@
 */
 #include "TcpStream.h"
 #include <cutils/sockets.h>
+
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -27,8 +28,9 @@
 #else
 #include <ws2tcpip.h>
 #endif
+#include <arpa/inet.h>
 
-#define VIRTUALBOX_HOST_ADDR 0xC0A83801
+#include "../../../streamagame.h"
 
 TcpStream::TcpStream(size_t bufSize) :
     SocketStream(bufSize)
@@ -94,7 +96,7 @@ int TcpStream::connect(unsigned short port)
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(port);
-    addr.sin_addr.s_addr = htonl(VIRTUALBOX_HOST_ADDR);
+    addr.sin_addr.s_addr = inet_addr(STREAMAGAME_RENDERER_ADDR);
 
 	int attempts = 0;
 	bool success = false;
@@ -114,7 +116,7 @@ int TcpStream::connect(unsigned short port)
 		ALOGE("TcpStream::connect() - connect() errno=%d\n", errno);
 	    return -1;
 	}
-	
+
     ALOGE("TcpStream::connect port %u - successful returns %d", port, m_sock);
 #ifdef _WIN32
     DWORD  flag;
